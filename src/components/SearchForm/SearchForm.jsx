@@ -3,7 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import { maxWidth } from "@material-ui/system";
+
+//Redux
+import { connect } from "react-redux";
+
+//Redux Actions
+import { getWord } from "../../actions/index";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +25,8 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(5, 5),
     width: "50%",
-    maxWidth: 600
+    maxWidth: 600,
+    marginBottom: 25
   },
   container: {
     display: "flex",
@@ -35,17 +41,25 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 5,
     width: "100%",
     margin: "0 auto"
+  },
+  title: {
+    color: "#444",
+    marginBottom: theme.spacing(5)
   }
 }));
 
-const SearchForm = () => {
+const SearchForm = props => {
   const classes = useStyles();
   const [searchTerm, setSearchTerm] = useState("");
-  console.log("search: ", searchTerm);
+
+  const handleSearch = () => {
+    props.getWord(searchTerm);
+  };
 
   return (
     <Paper className={classes.paper}>
       <form className={classes.container} noValidate autoComplete="off">
+        <h1 className={classes.title}>Search Word Definitions</h1>
         <TextField
           id="outlined-basic"
           className={classes.textField}
@@ -55,10 +69,15 @@ const SearchForm = () => {
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />
-        <Button className={classes.root}>Search</Button>
+        <Button onClick={handleSearch} className={classes.root}>
+          Search
+        </Button>
       </form>
     </Paper>
   );
 };
 
-export default SearchForm;
+export default connect(
+  state => state,
+  { getWord }
+)(SearchForm);

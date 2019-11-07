@@ -20,8 +20,10 @@ export const getWord = word => dispatch => {
       console.log(res);
     })
     .catch(err => {
-      dispatch({ type: FETCH_WORD_FAIL, payload: err.message });
-      console.log(err);
-      console.log(err.response);
+      dispatch({
+        type: FETCH_WORD_FAIL,
+        payload: err.response.data[0].message
+      });
+      console.log(err.response.data[0].message);
     });
 };

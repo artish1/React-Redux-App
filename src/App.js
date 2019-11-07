@@ -8,6 +8,7 @@ import { reducer } from "./reducers/index";
 
 import "./App.scss";
 import SearchForm from "./components/SearchForm/SearchForm";
+import WordCard from "./components/WordCard/WordCard";
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
@@ -18,6 +19,7 @@ function App({ dispatch }) {
     <Provider store={store}>
       <div className="App">
         <SearchForm />
+        <WordCard />
       </div>
     </Provider>
   );
