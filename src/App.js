@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
 //reducers
 import { reducer } from "./reducers/index";
@@ -9,7 +10,7 @@ import { reducer } from "./reducers/index";
 import "./App.css";
 import axios from "axios";
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 function App() {
   useEffect(() => {
