@@ -9,7 +9,8 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   card: {
-    width: "100%"
+    width: 280,
+    marginBottom: 25
   },
   title: {
     fontSize: 14
@@ -24,14 +25,19 @@ const useStyles = makeStyles({
 
 const WordCard = props => {
   const classes = useStyles();
-
+  console.log("WORD CARD PROPS: ", props);
   return (
     <Card className={classes.card}>
       <CardMedia
         className={classes.media}
-        image={props.image}
+        image={
+          props.image
+            ? props.image
+            : "https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-2.jpg"
+        }
         title="visual example of definition"
       />
+
       <CardContent>
         <Typography
           className={classes.title}
@@ -43,13 +49,19 @@ const WordCard = props => {
         <Typography variant="h5" component="h2">
           {props.word}
         </Typography>
+
         <Typography className={classes.pos} color="textSecondary">
           {props.pronunciation}
         </Typography>
         <Typography variant="body2" component="p">
           {props.definition}
-          <br />
-          {props.worldExample}
+        </Typography>
+        <Typography
+          className={classes.title}
+          color="textSecondary"
+          gutterBottom
+        >
+          "{props.wordExample}"
         </Typography>
       </CardContent>
     </Card>

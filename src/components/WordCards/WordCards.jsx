@@ -21,6 +21,7 @@ const WordCards = () => {
             definition={definition.definition}
             image={definition.image_url}
             key={index}
+            pronunciation={wordData.pronunciation}
             wordType={definition.type}
             wordExample={definition.example}
           />
