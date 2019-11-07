@@ -56,7 +56,6 @@ const SearchForm = props => {
     e.preventDefault();
     props.getWord(searchTerm);
   };
-
   return (
     <Paper className={classes.paper}>
       <form
@@ -68,6 +67,7 @@ const SearchForm = props => {
         <h1 className={classes.title}>Search Word Definitions</h1>
         <TextField
           id="outlined-basic"
+          disabled={props.isFetching ? true : false}
           className={classes.textField}
           label="Search"
           margin="normal"
@@ -75,7 +75,11 @@ const SearchForm = props => {
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />
-        <Button type="submit" className={classes.root}>
+        <Button
+          disabled={props.isFetching ? true : false}
+          type="submit"
+          className={classes.root}
+        >
           Search
         </Button>
       </form>
@@ -83,7 +87,11 @@ const SearchForm = props => {
   );
 };
 
+const mapStateToProps = state => {
+  return { isFetching: state.isFetching };
+};
+
 export default connect(
-  state => state,
+  mapStateToProps,
   { getWord }
 )(SearchForm);
