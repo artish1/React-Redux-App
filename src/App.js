@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -7,31 +6,19 @@ import thunk from "redux-thunk";
 //reducers
 import { reducer } from "./reducers/index";
 
-import "./App.css";
-import axios from "axios";
+import "./App.scss";
+import SearchForm from "./components/SearchForm/SearchForm";
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
-function App() {
-  useEffect(() => {
-    axios
-      .get("https://owlbot.info/api/v3/dictionary/apple", {
-        headers: {
-          Authorization: "Token 31962e31752bcc7e15fe8e5ba6f1340854af5989"
-        }
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-        console.log(err.response);
-      });
-  }, []);
+function App({ dispatch }) {
+  useEffect(() => {}, []);
 
   return (
     <Provider store={store}>
-      <div className="App"></div>
+      <div className="App">
+        <SearchForm />
+      </div>
     </Provider>
   );
 }
