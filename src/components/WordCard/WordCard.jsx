@@ -3,20 +3,13 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardActionArea from "@material-ui/core/CardActionArea";
 
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   card: {
-    minWidth: 275,
-    width: "58%"
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
+    width: "100%"
   },
   title: {
     fontSize: 14
@@ -29,16 +22,15 @@ const useStyles = makeStyles({
   }
 });
 
-const WordCard = () => {
+const WordCard = props => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.card}>
       <CardMedia
         className={classes.media}
-        image="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-        title="Contemplative Reptile"
+        image={props.image}
+        title="visual example of definition"
       />
       <CardContent>
         <Typography
@@ -46,22 +38,18 @@ const WordCard = () => {
           color="textSecondary"
           gutterBottom
         >
-          Word of the Day
+          {props.wordType}
         </Typography>
         <Typography variant="h5" component="h2">
-          be
-          {bull}
-          nev
-          {bull}o{bull}
-          lent
+          {props.word}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          adjective
+          {props.pronunciation}
         </Typography>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
+          {props.definition}
           <br />
-          {'"a benevolent smile"'}
+          {props.worldExample}
         </Typography>
       </CardContent>
     </Card>
