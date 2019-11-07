@@ -52,13 +52,19 @@ const SearchForm = props => {
   const classes = useStyles();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSearch = () => {
+  const handleSearch = e => {
+    e.preventDefault();
     props.getWord(searchTerm);
   };
 
   return (
     <Paper className={classes.paper}>
-      <form className={classes.container} noValidate autoComplete="off">
+      <form
+        onSubmit={handleSearch}
+        className={classes.container}
+        noValidate
+        autoComplete="off"
+      >
         <h1 className={classes.title}>Search Word Definitions</h1>
         <TextField
           id="outlined-basic"
@@ -69,7 +75,7 @@ const SearchForm = props => {
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />
-        <Button onClick={handleSearch} className={classes.root}>
+        <Button type="submit" className={classes.root}>
           Search
         </Button>
       </form>

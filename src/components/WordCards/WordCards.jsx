@@ -9,8 +9,6 @@ import "./WordCards.scss";
 const WordCards = () => {
   const wordData = useSelector(state => state.wordData);
 
-  console.log("WORD DATA: ", wordData);
-
   if (!wordData) return <h2>Search for a word ;)</h2>;
   return (
     <div className="word-wrapper">

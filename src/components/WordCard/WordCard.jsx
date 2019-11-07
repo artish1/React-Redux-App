@@ -25,7 +25,6 @@ const useStyles = makeStyles({
 
 const WordCard = props => {
   const classes = useStyles();
-  console.log("WORD CARD PROPS: ", props);
   return (
     <Card className={classes.card}>
       <CardMedia
