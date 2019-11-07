@@ -54,7 +54,9 @@ const SearchForm = props => {
 
   const handleSearch = e => {
     e.preventDefault();
-    props.getWord(searchTerm);
+    if (!/^[a-zA-Z]*$/g.test(searchTerm))
+      alert("No numbers or special characters allowed.");
+    else props.getWord(searchTerm);
   };
   return (
     <Paper className={classes.paper}>
@@ -72,6 +74,7 @@ const SearchForm = props => {
           label="Search"
           margin="normal"
           variant="outlined"
+          type="text"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />
