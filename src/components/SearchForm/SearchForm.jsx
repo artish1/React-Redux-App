@@ -54,6 +54,12 @@ const SearchForm = props => {
 
   const handleSearch = e => {
     e.preventDefault();
+
+    if (searchTerm.length === 0) {
+      alert("Search term must be longer than 0 characters");
+      return;
+    }
+
     if (!/^[a-zA-Z]*$/g.test(searchTerm))
       alert("No numbers or special characters allowed.");
     else props.getWord(searchTerm);
